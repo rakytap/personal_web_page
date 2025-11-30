@@ -29,6 +29,8 @@ const translations: Record<Language, Record<string, string>> = {
         experienceContent: 'Experience: 10 years of experience in the field of computer science',
         skillsContent: 'Skills: Programming, software development, database management, system administration, project management',
         interestsContent: 'Interests: Programming, software development, database management, system administration, project management',
+        showEducation: 'Show Education',
+        hideEducation: 'Hide Education',
     },
     hu: {
         home: 'Kezdőlap',
@@ -46,6 +48,8 @@ const translations: Record<Language, Record<string, string>> = {
         experienceContent: 'Tapasztalat: 10 év tapasztalat a számítástechnika területén',
         skillsContent: 'Készségek: Programozás, szoftverfejlesztés, adatbáziskezelés, rendszerezés, projektkezelés',
         interestsContent: 'Érdeklődési körök: Programozás, szoftverfejlesztés, adatbáziskezelés, rendszerezés, projektkezelés',
+        showEducation: 'Végzettség megjelenítése',
+        hideEducation: 'Végzettség elrejtése',
     },
 }
 
