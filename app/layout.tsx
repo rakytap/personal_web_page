@@ -1,4 +1,7 @@
 import type { Metadata } from 'next'
+import { LanguageProvider } from './components/LanguageProvider'
+import { Navigation } from './components/Navigation'
+import { ThemeProvider } from './components/ThemeProvider'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -12,8 +15,15 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html lang="en" suppressHydrationWarning>
+      <body className="bg-white dark:bg-gray-900 transition-colors">
+        <ThemeProvider>
+          <LanguageProvider>
+            <Navigation />
+            {children}
+          </LanguageProvider>
+        </ThemeProvider>
+      </body>
     </html>
   )
 }
