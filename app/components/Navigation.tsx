@@ -26,6 +26,12 @@ export function Navigation() {
                             {t('about')}
                         </Link>
                         <Link
+                            href="/projects"
+                            className="text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 px-3 py-2 text-sm font-medium transition-colors"
+                        >
+                            {t('projects')}
+                        </Link>
+                        <Link
                             href="/teaching"
                             className="text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 px-3 py-2 text-sm font-medium transition-colors"
                         >

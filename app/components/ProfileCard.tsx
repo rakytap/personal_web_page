@@ -1,14 +1,41 @@
 'use client'
 
 import Image from 'next/image'
+import { useEffect, useState } from 'react'
 import { useLanguage } from './LanguageProvider'
 
 export function ProfileCard() {
     const { t } = useLanguage()
+    const [currentSection, setCurrentSection] = useState(0)
 
     // Hardcoded photo path - place your photo in the public folder as profile-photo.jpg
     // You can also use .png, .webp, etc. Just update the path below
     const photoPath = '/profile-photo.jpg'
+
+    // Sections configuration
+    const sections = [
+        {
+            title: t('seniorResearchFellowTitle'),
+            content: t('seniorResearchFellowContent'),
+        },
+        {
+            title: t('seniorSoftwareEngineerTitle'),
+            content: t('seniorSoftwareEngineerContent'),
+        },
+        {
+            title: t('forensicPhysicsExpertTitle'),
+            content: t('forensicPhysicsExpertContent'),
+        },
+    ]
+
+    // Auto-rotate sections every 10 seconds
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentSection((prev) => (prev + 1) % 3)
+        }, 10000) // Change section every 10 seconds
+
+        return () => clearInterval(interval)
+    }, [])
 
     return (
         <div className="max-w-4xl mx-auto">
@@ -41,36 +68,42 @@ export function ProfileCard() {
                             {t('homeSubtitle')}
                         </p>
 
-                        <div className="space-y-6">
-                            {/* Senior Research Fellow Section */}
-                            <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 border-l-4 border-indigo-500 dark:border-indigo-400">
-                                <h3 className="text-xl font-bold text-indigo-600 dark:text-indigo-400 mb-3">
-                                    {t('seniorResearchFellowTitle')}
-                                </h3>
-                                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                                    {t('seniorResearchFellowContent')}
-                                </p>
-                            </div>
+                        <div className="relative min-h-[300px] mb-6 overflow-hidden">
+                            {sections.map((section, index) => (
+                                <div
+                                    key={index}
+                                    className={`absolute inset-0 transition-all duration-700 ease-in-out ${currentSection === index
+                                        ? 'opacity-100 translate-x-0 z-10'
+                                        : currentSection < index
+                                            ? 'opacity-0 translate-x-full z-0 pointer-events-none'
+                                            : 'opacity-0 -translate-x-full z-0 pointer-events-none'
+                                        }`}
+                                >
+                                    <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 border-l-4 border-indigo-500 dark:border-indigo-400">
+                                        <h3 className="text-xl font-bold text-indigo-600 dark:text-indigo-400 mb-3">
+                                            {section.title}
+                                        </h3>
+                                        <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-justify">
+                                            {section.content}
+                                        </p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
 
-                            {/* Senior Software Engineer Section */}
-                            <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 border-l-4 border-indigo-500 dark:border-indigo-400">
-                                <h3 className="text-xl font-bold text-indigo-600 dark:text-indigo-400 mb-3">
-                                    {t('seniorSoftwareEngineerTitle')}
-                                </h3>
-                                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                                    {t('seniorSoftwareEngineerContent')}
-                                </p>
-                            </div>
-
-                            {/* Forensic Physics Expert Section */}
-                            <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 border-l-4 border-indigo-500 dark:border-indigo-400">
-                                <h3 className="text-xl font-bold text-indigo-600 dark:text-indigo-400 mb-3">
-                                    {t('forensicPhysicsExpertTitle')}
-                                </h3>
-                                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                                    {t('forensicPhysicsExpertContent')}
-                                </p>
-                            </div>
+                        {/* Section indicators */}
+                        <div className="flex justify-center gap-2">
+                            {sections.map((_, index) => (
+                                <button
+                                    key={index}
+                                    onClick={() => setCurrentSection(index)}
+                                    className={`h-2 rounded-full transition-all duration-300 ${currentSection === index
+                                        ? 'w-8 bg-indigo-500 dark:bg-indigo-400'
+                                        : 'w-2 bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'
+                                        }`}
+                                    aria-label={`Go to section ${index + 1}`}
+                                />
+                            ))}
                         </div>
                     </div>
                 </div>

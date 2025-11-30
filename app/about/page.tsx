@@ -1,10 +1,21 @@
 'use client'
 
+import { useState } from 'react'
 import { EducationTimeline } from '../components/EducationTimeline'
 import { useLanguage } from '../components/LanguageProvider'
+import { WorkHistoryTimeline } from '../components/WorkHistoryTimeline'
 
 export default function About() {
     const { t } = useLanguage()
+    const [expandedSection, setExpandedSection] = useState<'education' | 'work' | null>(null)
+
+    const handleEducationToggle = () => {
+        setExpandedSection(expandedSection === 'education' ? null : 'education')
+    }
+
+    const handleWorkToggle = () => {
+        setExpandedSection(expandedSection === 'work' ? null : 'work')
+    }
 
     return (
         <main className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 py-12 px-4">
@@ -23,13 +34,6 @@ export default function About() {
                         <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                             {t('aboutContent')}
                         </p>
-                    </div>
-
-                    <div className="mt-12">
-                        <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">
-                            {t('education')}
-                        </h2>
-                        <EducationTimeline />
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-6 mt-12">
@@ -61,6 +65,46 @@ export default function About() {
                             </p>
                         </div>
                     </div>
+
+                    <div className="mt-12">
+                        <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">
+                            {t('education')} & {t('workHistory')}
+                        </h2>
+
+                        {/* Toggle Buttons Side by Side */}
+                        <div className="grid md:grid-cols-2 gap-4 mb-8">
+                            <EducationTimeline
+                                isExpanded={expandedSection === 'education'}
+                                onToggle={handleEducationToggle}
+                                showButton={true}
+                            />
+                            <WorkHistoryTimeline
+                                isExpanded={expandedSection === 'work'}
+                                onToggle={handleWorkToggle}
+                                showButton={true}
+                            />
+                        </div>
+
+                        {/* Timelines - Only show the expanded one below buttons */}
+                        <div>
+                            {expandedSection === 'education' && (
+                                <EducationTimeline
+                                    isExpanded={true}
+                                    onToggle={handleEducationToggle}
+                                    showButton={false}
+                                />
+                            )}
+                            {expandedSection === 'work' && (
+                                <WorkHistoryTimeline
+                                    isExpanded={true}
+                                    onToggle={handleWorkToggle}
+                                    showButton={false}
+                                />
+                            )}
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
         </main>
