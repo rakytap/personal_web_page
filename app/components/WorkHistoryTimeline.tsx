@@ -35,17 +35,6 @@ export function WorkHistoryTimeline({ isExpanded, onToggle, showButton = true }:
                 ],
             },
             {
-                period: 'Apr 2023 – May 2025',
-                title: 'Senior Software Engineer, Consultant',
-                organization: 'Maxeler Technologies, Groq',
-                location: 'Mountain View, CA',
-                responsibilities: [
-                    'Developing quantum computing application for Groq\'s data-flow architecture',
-                    'Developing exact and non-exact hardware emulation framework, architecture verification',
-                    'Designing new architecture functionalities',
-                ],
-            },
-            {
                 period: 'Jan 2022 - Current',
                 title: 'Researcher',
                 organization: 'Quantum Computing and Information Research Group, Wigner Research Centre for Physics',
@@ -53,6 +42,28 @@ export function WorkHistoryTimeline({ isExpanded, onToggle, showButton = true }:
                 responsibilities: [
                     'Involved in the OpenSuperQPlus project',
                     'Developed quantum compiler',
+                ],
+            },
+            {
+                period: 'Apr 2014 - Current',
+                title: 'Forensic Specialist',
+                organization: 'Ministry of Justice',
+                location: 'Budapest, Hungary',
+                responsibilities: [
+                    'Attended and examined scenes of crimes.',
+                    'Reconstructed crime scenes to determine relationships among pieces of evidence.',
+                    'Served as expert witness in court of law by explaining analysis procedures.',
+                ],
+            },
+            {
+                period: 'Apr 2023 - May 2025',
+                title: 'Senior Software Engineer, Consultant',
+                organization: 'Maxeler Technologies, Groq',
+                location: 'Mountain View, CA',
+                responsibilities: [
+                    'Developing quantum computing application for Groq\'s data-flow architecture',
+                    'Developing exact and non-exact hardware emulation framework, architecture verification',
+                    'Designing new architecture functionalities',
                 ],
             },
             {
@@ -65,6 +76,82 @@ export function WorkHistoryTimeline({ isExpanded, onToggle, showButton = true }:
                     'Coordinated the workflow of the Laboratory of Quantum Computer Emulators',
                     'Collaborated with team members to initiate best practices to achieve organizational goals',
                     'Wrote research papers, reports, reviews and summaries',
+                ],
+            },
+            {
+                period: 'Jan 2017 - Nov 2021',
+                title: 'IT Adviser',
+                organization: 'Digital Success Nonprofit Ltd.',
+                location: 'Budapest, Hungary',
+                responsibilities: [
+                    'Planned, developed and implemented strategies to convey information with key decision makers.',
+                    'Produced detailed reports outlining key issues and proposed solutions.',
+                    'Anticipated responses and prepared clear and articulate answers.',
+                ],
+            },
+            {
+                period: 'Nov 2020 - Okt 2021',
+                title: 'Researcher',
+                organization: 'Department of Physics of Complex Systems, Eötvös Loránd University, Quantum Technology National Excellence Program (No.2017-1.2.1-NKP-2017-00001)',
+                location: 'Budapest, Hungary',
+                responsibilities: [
+                    'Studied and solved complex problems using scientific computing.',
+                    'Developed and analyzed computer models and simulations.',
+                    'Assessed and evaluated data using complex calculations and computer modeling.',
+                ],
+            },
+            {
+                period: 'Okt 2017 - Sep 2020',
+                title: 'Postdoctoral Researcher',
+                organization: 'Department of Physics of Complex Systems, Eötvös Loránd University, Postdoctoral Programme of the National Research, Development and Innovation Office',
+                location: 'Budapest, Hungary',
+                responsibilities: [
+                    'Conducted independent research in solid state physics and development to attain short and long-term objectives.',
+                    'Drafted manuscripts and presented findings at major conferences.',
+                    'Wrote and published peer-reviewed articles concerning findings and highlighted possible applications for findings.',
+                ],
+            },
+            {
+                period: 'Mar 2013 - Dec 2019',
+                title: 'Teaching Volunteer',
+                organization: 'Department of Materials Physics, Department of Physics of Complex Systems, Eötvös Loránd Universit',
+                location: 'Budapest, Hungary',
+                responsibilities: [
+                    'Advanced courses of classical optics, theory of special relativity, and thermodynamics.',
+                    'Established and maintained positive relationships with students to foster environment of support and open communication.',
+                    'Graded homework, tests and quizzes to keep accurate track of student performance.',
+                    'Supervised 3 BSc and 2 MSc theses.',
+                    'Instructed students through lectures, discussions.',
+                ],
+            },
+            {
+                period: 'Sep 2015 - Aug 2017',
+                title: 'Postdoctoral Research Fellow',
+                organization: 'Department of Physics of Complex Systems, Eötvös Loránd University, MTA Postdoctoral Fellowship Programme',
+                location: 'Budapest, Hungary',
+                responsibilities: [
+                    'Published research results in peer-reviewed journals and presented at seminars and meetings.',
+                    'Pursued independent and complementary research interests to achieve.',
+                ],
+            },
+            {
+                period: 'Sep 2013 - Aug 2015',
+                title: 'Postdoctoral Research Fellow',
+                organization: 'Department of Theoretical Physics, Budapest University of Technology and Economics, MTA Postdoctoral Fellowship Programme',
+                location: 'Budapest, Hungary',
+                responsibilities: [
+                    'Conducted research guided by faculty supervisor in accordance with institutional and federal guidelines.',
+                    'Authored professional scientific papers for publishing in peer-reviewed journals.',
+                ],
+            },
+            {
+                period: 'Sep 2009 - Dec 2012',
+                title: 'Software Developer',
+                organization: 'ElteSoft Ltd.',
+                location: 'Budapest, Hungary',
+                responsibilities: [
+                    'Developed software for both desktop and mobile operating systems.',
+                    'Participated in software field testing to verify in-situ performance of developed projects.',
                 ],
             },
         ]
