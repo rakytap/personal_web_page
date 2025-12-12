@@ -26,13 +26,37 @@ export function ProfileCard() {
             title: t('forensicPhysicsExpertTitle'),
             content: t('forensicPhysicsExpertContent'),
         },
+        {
+            title: t('algorithmDeveloperTitle'),
+            content: t('algorithmDeveloper'),
+        },
+        {
+            title: t('teamPlayerTitle'),
+            content: t('teamPlayer'),
+        },
+        {
+            title: t('groqChipProgrammingTitle'),
+            content: t('groqChipProgramming'),
+        },
+        {
+            title: t('fpgaDataFlowProgrammingTitle'),
+            content: t('fpgaDataFlowProgramming'),
+        },
+        {
+            title: t('arduinoProgrammingTitle'),
+            content: t('arduinoProgramming'),
+        },
+        {
+            title: t('threeDPrintingDesignTitle'),
+            content: t('threeDPrintingDesign'),
+        },
     ]
 
-    // Auto-rotate sections every 10 seconds
+    // Auto-rotate sections every 7 seconds
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentSection((prev) => (prev + 1) % 3)
-        }, 10000) // Change section every 10 seconds
+        }, 7000) // Change section every 7 seconds
 
         return () => clearInterval(interval)
     }, [])

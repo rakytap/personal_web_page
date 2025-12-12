@@ -36,6 +36,40 @@ export default function About() {
                         </p>
                     </div>
 
+                    {/* CV Download Section */}
+                    <div className="bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/30 dark:to-purple-900/30 rounded-lg p-6 border-l-4 border-indigo-500 dark:border-indigo-400">
+                        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                            <div>
+                                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-2">
+                                    {t('downloadCV')}
+                                </h2>
+                                <p className="text-gray-600 dark:text-gray-300">
+                                    {t('downloadCVDescription')}
+                                </p>
+                            </div>
+                            <a
+                                href="/cv.pdf"
+                                download
+                                className="bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-200 inline-flex items-center gap-2 shadow-md hover:shadow-lg"
+                            >
+                                <svg
+                                    className="w-5 h-5"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                                    />
+                                </svg>
+                                {t('downloadCV')}
+                            </a>
+                        </div>
+                    </div>
+
                     <div className="grid md:grid-cols-2 gap-6 mt-12">
 
                         <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-6">

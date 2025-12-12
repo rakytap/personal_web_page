@@ -38,6 +38,9 @@ export default function Teaching() {
                         <p className="text-xl text-gray-600 dark:text-gray-300">
                             {t('teachingDescription')}
                         </p>
+                        <p className="text-lg text-indigo-600 dark:text-indigo-400 font-semibold">
+                            {t('courseCode')}
+                        </p>
                     </div>
 
                     {/* Course Card */}

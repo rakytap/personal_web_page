@@ -76,6 +76,20 @@ export default function Projects() {
             stars: 'Published',
             isGitHub: false,
         },
+        {
+            name: t('publicationTitle3'),
+            description: t('journalArticleDescription3'),
+            url: 'https://quantum-journal.org/papers/q-2025-08-29-1841/',
+            features: [
+                t('journalArticle3Feature1'),
+                t('journalArticle3Feature2'),
+                t('journalArticle3Feature3'),
+                t('journalArticle3Feature4'),
+            ],
+            language: 'Research',
+            stars: 'Published',
+            isGitHub: false,
+        },
     ]
 
     return (
@@ -98,6 +112,8 @@ export default function Projects() {
                             { bg: 'bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/30 dark:to-pink-900/30', border: 'border-purple-400', text: 'text-purple-800 dark:text-purple-200' },
                             { bg: 'bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-900/30 dark:to-teal-900/30', border: 'border-emerald-400', text: 'text-emerald-800 dark:text-emerald-200' },
                             { bg: 'bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-900/30 dark:to-orange-900/30', border: 'border-amber-400', text: 'text-amber-800 dark:text-amber-200' },
+                            { bg: 'bg-gradient-to-br from-rose-50 to-red-50 dark:from-rose-900/30 dark:to-red-900/30', border: 'border-rose-400', text: 'text-rose-800 dark:text-rose-200' },
+                            { bg: 'bg-gradient-to-br from-cyan-50 to-sky-50 dark:from-cyan-900/30 dark:to-sky-900/30', border: 'border-cyan-400', text: 'text-cyan-800 dark:text-cyan-200' },
                         ]
                         const colors = colorSchemes[index % colorSchemes.length]
 
@@ -172,6 +188,9 @@ export default function Projects() {
         </main>
     )
 }
+
+
+
 
 
 
