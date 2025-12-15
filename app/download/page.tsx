@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useAuth } from '../components/AuthProvider'
 import { useLanguage } from '../components/LanguageProvider'
 
@@ -138,6 +138,34 @@ export default function Download() {
         } catch (error) {
             console.error('Toggle error:', error)
             alert(t('fileUpdateError'))
+        }
+    }
+
+    // Handle delete
+    const handleDelete = async (fileId: string) => {
+        try {
+            const token = localStorage.getItem('authToken')
+            if (!token) return
+
+            const confirmed = window.confirm(t('deleteFile'))
+            if (!confirmed) return
+
+            const response = await fetch(`/api/files?id=${fileId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                },
+            })
+
+            if (response.ok) {
+                alert(t('fileDeleted'))
+                await fetchFiles()
+            } else {
+                alert(t('fileDeleteError'))
+            }
+        } catch (error) {
+            console.error('Delete error:', error)
+            alert(t('fileDeleteError'))
         }
     }
 
@@ -343,6 +371,14 @@ export default function Download() {
                                                 >
                                                     {t('downloadFile')}
                                                 </button>
+                                                {isAuthenticated && (
+                                                    <button
+                                                        onClick={() => handleDelete(file.id)}
+                                                        className="bg-red-600 hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-600 text-white px-4 py-2 rounded-lg font-semibold transition-colors duration-200 text-sm"
+                                                    >
+                                                        {t('deleteFile')}
+                                                    </button>
+                                                )}
                                             </div>
                                         </div>
                                     </div>

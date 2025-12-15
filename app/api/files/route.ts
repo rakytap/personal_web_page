@@ -14,6 +14,19 @@ async function ensureUploadsDir() {
     }
 }
 
+// Delete a file safely
+async function deleteFileFromDisk(fileName: string) {
+    const fullPath = path.join(UPLOADS_DIR, fileName)
+    try {
+        await fs.unlink(fullPath)
+    } catch (error: any) {
+        if (error.code !== 'ENOENT') {
+            throw error
+        }
+        // If already missing, we treat as deleted
+    }
+}
+
 // Get files metadata
 async function getFilesMetadata() {
     try {
@@ -95,6 +108,49 @@ export async function POST(request: NextRequest) {
         console.error('Error updating file:', error)
         return NextResponse.json(
             { error: 'Failed to update file' },
+            { status: 500 }
+        )
+    }
+}
+
+// DELETE - Remove file and metadata
+export async function DELETE(request: NextRequest) {
+    try {
+        if (!verifyToken(request)) {
+            return NextResponse.json(
+                { error: 'Unauthorized' },
+                { status: 401 }
+            )
+        }
+
+        const { searchParams } = new URL(request.url)
+        const fileId = searchParams.get('id')
+        if (!fileId) {
+            return NextResponse.json(
+                { error: 'File ID required' },
+                { status: 400 }
+            )
+        }
+
+        const metadata = await getFilesMetadata()
+        const fileIndex = metadata.files.findIndex((f: any) => f.id === fileId)
+        if (fileIndex === -1) {
+            return NextResponse.json(
+                { error: 'File not found' },
+                { status: 404 }
+            )
+        }
+
+        const fileToDelete = metadata.files[fileIndex]
+        metadata.files.splice(fileIndex, 1)
+        await deleteFileFromDisk(fileToDelete.fileName)
+        await saveFilesMetadata(metadata)
+
+        return NextResponse.json({ success: true })
+    } catch (error) {
+        console.error('Error deleting file:', error)
+        return NextResponse.json(
+            { error: 'Failed to delete file' },
             { status: 500 }
         )
     }

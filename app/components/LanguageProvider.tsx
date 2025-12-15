@@ -160,6 +160,9 @@ const translations: Record<Language, Record<string, string>> = {
         fileUploadError: 'Failed to upload file',
         fileUpdated: 'File updated successfully',
         fileUpdateError: 'Failed to update file',
+        fileDeleted: 'File deleted successfully',
+        fileDeleteError: 'Failed to delete file',
+        deleteFile: 'Delete',
         loggedInAs: 'Logged in as',
     },
     hu: {
@@ -308,6 +311,9 @@ const translations: Record<Language, Record<string, string>> = {
         fileUploadError: 'A fájl feltöltése sikertelen',
         fileUpdated: 'Fájl sikeresen frissítve',
         fileUpdateError: 'A fájl frissítése sikertelen',
+        fileDeleted: 'Fájl sikeresen törölve',
+        fileDeleteError: 'A fájl törlése sikertelen',
+        deleteFile: 'Törlés',
         loggedInAs: 'Bejelentkezve mint',
     },
 }
