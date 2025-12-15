@@ -15,13 +15,13 @@ This project can run in Docker for a reproducible, persistent deployment.
 
 ## Build the image
 ```bash
-docker build -t personal-web-page .
+docker build -t personal-web-page:latest .
 ```
 
 ## Run the container (with persistence)
 Mount uploads and metadata so they survive restarts:
 ```bash
-docker run -d -p 3000:3000 \
+docker run --name web-page -d -p 3000:3000 \
   --env-file .env.local \
   -v $(pwd)/uploads:/app/uploads \
   -v $(pwd)/files-metadata.json:/app/files-metadata.json \
