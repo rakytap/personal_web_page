@@ -1,5 +1,5 @@
-import { NextRequest, NextResponse } from 'next/server'
 import { readFile } from 'fs/promises'
+import { NextRequest, NextResponse } from 'next/server'
 import path from 'path'
 
 const FILES_METADATA_PATH = path.join(process.cwd(), 'files-metadata.json')

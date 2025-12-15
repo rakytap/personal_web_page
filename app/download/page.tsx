@@ -215,177 +215,186 @@ export default function Download() {
     return (
         <main className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 py-12 px-4">
             <div className="max-w-6xl mx-auto">
-                <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 md:p-12 space-y-8">
-                    <div className="text-center space-y-4">
-                        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
-                            {t('downloadTitle')}
-                        </h1>
-                        <p className="text-xl text-gray-600 dark:text-gray-300">
-                            {t('downloadDescription')}
-                        </p>
-                    </div>
-
-                    {/* Login Section */}
-                    {!isAuthenticated ? (
-                        <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 border-l-4 border-indigo-500 dark:border-indigo-400">
-                            <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
-                                {t('loginTitle')}
-                            </h2>
-                            <form onSubmit={handleLogin} className="space-y-4">
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                                        {t('username')}
-                                    </label>
-                                    <input
-                                        type="text"
-                                        value={loginUsername}
-                                        onChange={(e) => setLoginUsername(e.target.value)}
-                                        className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-                                        required
-                                    />
-                                </div>
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                                        {t('password')}
-                                    </label>
-                                    <input
-                                        type="password"
-                                        value={loginPassword}
-                                        onChange={(e) => setLoginPassword(e.target.value)}
-                                        className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-                                        required
-                                    />
-                                </div>
-                                {loginError && (
-                                    <p className="text-red-600 dark:text-red-400 text-sm">{loginError}</p>
-                                )}
-                                <button
-                                    type="submit"
-                                    className="w-full bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-200"
-                                >
-                                    {t('loginButton')}
-                                </button>
-                            </form>
-                        </div>
-                    ) : (
-                        <div className="bg-green-50 dark:bg-green-900/30 rounded-lg p-6 border-l-4 border-green-500 dark:border-green-400">
-                            <div className="flex justify-between items-center">
-                                <div>
-                                    <p className="text-lg font-semibold text-gray-900 dark:text-white">
-                                        {t('loggedInAs')} <span className="text-indigo-600 dark:text-indigo-400">{username}</span>
-                                    </p>
-                                </div>
-                                <button
-                                    onClick={logout}
-                                    className="bg-red-600 hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-200"
-                                >
-                                    {t('logoutButton')}
-                                </button>
+                <div className="flex flex-col lg:flex-row gap-6 lg:items-start">
+                    <div className="flex-1">
+                        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 md:p-12 space-y-8">
+                            <div className="text-center space-y-4">
+                                <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
+                                    {t('downloadTitle')}
+                                </h1>
+                                <p className="text-xl text-gray-600 dark:text-gray-300">
+                                    {t('downloadDescription')}
+                                </p>
                             </div>
-                        </div>
-                    )}
 
-                    {/* File Upload Section (only when logged in) */}
-                    {isAuthenticated && (
-                        <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 border-l-4 border-purple-500 dark:border-purple-400">
-                            <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
-                                {t('uploadFile')}
-                            </h2>
-                            <div className="space-y-4">
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                                        {t('selectFile')}
-                                    </label>
-                                    <input
-                                        ref={fileInputRef}
-                                        type="file"
-                                        onChange={handleFileUpload}
-                                        disabled={uploading}
-                                        className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-                                    />
+                            {/* Logged in banner */}
+                            {isAuthenticated && (
+                                <div className="bg-green-50 dark:bg-green-900/30 rounded-lg p-6 border-l-4 border-green-500 dark:border-green-400">
+                                    <div className="flex justify-between items-center">
+                                        <div>
+                                            <p className="text-lg font-semibold text-gray-900 dark:text-white">
+                                                {t('loggedInAs')} <span className="text-indigo-600 dark:text-indigo-400">{username}</span>
+                                            </p>
+                                        </div>
+                                        <button
+                                            onClick={logout}
+                                            className="bg-red-600 hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-200"
+                                        >
+                                            {t('logoutButton')}
+                                        </button>
+                                    </div>
                                 </div>
-                                <div className="flex items-center">
-                                    <input
-                                        type="checkbox"
-                                        id="isPublic"
-                                        checked={isPublic}
-                                        onChange={(e) => setIsPublic(e.target.checked)}
-                                        className="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
-                                    />
-                                    <label htmlFor="isPublic" className="ml-2 text-sm font-medium text-gray-700 dark:text-gray-300">
-                                        {t('makePublic')}
-                                    </label>
-                                </div>
-                                {uploading && (
-                                    <p className="text-indigo-600 dark:text-indigo-400">Uploading...</p>
-                                )}
-                            </div>
-                        </div>
-                    )}
+                            )}
 
-                    {/* Files List */}
-                    <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-6">
-                        <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
-                            {t('uploadedFiles')}
-                        </h2>
-                        {loading ? (
-                            <p className="text-gray-600 dark:text-gray-300">Loading...</p>
-                        ) : files.length === 0 ? (
-                            <p className="text-gray-600 dark:text-gray-300">{t('noFiles')}</p>
-                        ) : (
-                            <div className="space-y-4">
-                                {files.map((file) => (
-                                    <div
-                                        key={file.id}
-                                        className="bg-white dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-600 hover:shadow-md transition-shadow"
-                                    >
-                                        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                                            <div className="flex-1">
-                                                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                                                    {file.originalName}
-                                                </h3>
-                                                <div className="flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-400">
-                                                    <span>
-                                                        {t('fileSize')}: {formatFileSize(file.size)}
-                                                    </span>
-                                                    <span>
-                                                        {t('uploadedAt')}: {formatDate(file.uploadedAt)}
-                                                    </span>
-                                                    <span className={`px-2 py-1 rounded ${file.isPublic ? 'bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300' : 'bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-300'}`}>
-                                                        {file.isPublic ? t('public') : t('private')}
-                                                    </span>
+                            {/* File Upload Section (only when logged in) */}
+                            {isAuthenticated && (
+                                <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 border-l-4 border-purple-500 dark:border-purple-400">
+                                    <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
+                                        {t('uploadFile')}
+                                    </h2>
+                                    <div className="space-y-4">
+                                        <div>
+                                            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                                {t('selectFile')}
+                                            </label>
+                                            <input
+                                                ref={fileInputRef}
+                                                type="file"
+                                                onChange={handleFileUpload}
+                                                disabled={uploading}
+                                                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                                            />
+                                        </div>
+                                        <div className="flex items-center">
+                                            <input
+                                                type="checkbox"
+                                                id="isPublic"
+                                                checked={isPublic}
+                                                onChange={(e) => setIsPublic(e.target.checked)}
+                                                className="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                                            />
+                                            <label htmlFor="isPublic" className="ml-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+                                                {t('makePublic')}
+                                            </label>
+                                        </div>
+                                        {uploading && (
+                                            <p className="text-indigo-600 dark:text-indigo-400">Uploading...</p>
+                                        )}
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* Files List */}
+                            <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-6">
+                                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
+                                    {t('uploadedFiles')}
+                                </h2>
+                                {loading ? (
+                                    <p className="text-gray-600 dark:text-gray-300">Loading...</p>
+                                ) : files.length === 0 ? (
+                                    <p className="text-gray-600 dark:text-gray-300">{t('noFiles')}</p>
+                                ) : (
+                                    <div className="space-y-4">
+                                        {files.map((file) => (
+                                            <div
+                                                key={file.id}
+                                                className="bg-white dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-600 hover:shadow-md transition-shadow"
+                                            >
+                                                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                                                    <div className="flex-1">
+                                                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                                                            {file.originalName}
+                                                        </h3>
+                                                        <div className="flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-400">
+                                                            <span>
+                                                                {t('fileSize')}: {formatFileSize(file.size)}
+                                                            </span>
+                                                            <span>
+                                                                {t('uploadedAt')}: {formatDate(file.uploadedAt)}
+                                                            </span>
+                                                            <span className={`px-2 py-1 rounded ${file.isPublic ? 'bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300' : 'bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-300'}`}>
+                                                                {file.isPublic ? t('public') : t('private')}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div className="flex gap-2">
+                                                        {isAuthenticated && (
+                                                            <button
+                                                                onClick={() => handleToggleVisibility(file.id, file.isPublic)}
+                                                                className="bg-yellow-600 hover:bg-yellow-700 dark:bg-yellow-500 dark:hover:bg-yellow-600 text-white px-4 py-2 rounded-lg font-semibold transition-colors duration-200 text-sm"
+                                                            >
+                                                                {t('toggleVisibility')}
+                                                            </button>
+                                                        )}
+                                                        <button
+                                                            onClick={() => handleDownload(file.id)}
+                                                            className="bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover-bg-indigo-600 text-white px-4 py-2 rounded-lg font-semibold transition-colors duration-200 text-sm"
+                                                        >
+                                                            {t('downloadFile')}
+                                                        </button>
+                                                        {isAuthenticated && (
+                                                            <button
+                                                                onClick={() => handleDelete(file.id)}
+                                                                className="bg-red-600 hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-600 text-white px-4 py-2 rounded-lg font-semibold transition-colors duration-200 text-sm"
+                                                            >
+                                                                {t('deleteFile')}
+                                                            </button>
+                                                        )}
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div className="flex gap-2">
-                                                {isAuthenticated && (
-                                                    <button
-                                                        onClick={() => handleToggleVisibility(file.id, file.isPublic)}
-                                                        className="bg-yellow-600 hover:bg-yellow-700 dark:bg-yellow-500 dark:hover:bg-yellow-600 text-white px-4 py-2 rounded-lg font-semibold transition-colors duration-200 text-sm"
-                                                    >
-                                                        {t('toggleVisibility')}
-                                                    </button>
-                                                )}
-                                                <button
-                                                    onClick={() => handleDownload(file.id)}
-                                                    className="bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 text-white px-4 py-2 rounded-lg font-semibold transition-colors duration-200 text-sm"
-                                                >
-                                                    {t('downloadFile')}
-                                                </button>
-                                                {isAuthenticated && (
-                                                    <button
-                                                        onClick={() => handleDelete(file.id)}
-                                                        className="bg-red-600 hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-600 text-white px-4 py-2 rounded-lg font-semibold transition-colors duration-200 text-sm"
-                                                    >
-                                                        {t('deleteFile')}
-                                                    </button>
-                                                )}
-                                            </div>
-                                        </div>
+                                        ))}
                                     </div>
-                                ))}
+                                )}
                             </div>
-                        )}
+                        </div>
                     </div>
+
+                    {/* Login island */}
+                    {!isAuthenticated && (
+                        <div className="w-full lg:w-80">
+                            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 border border-gray-200 dark:border-gray-700">
+                                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
+                                    {t('loginTitle')}
+                                </h2>
+                                <form onSubmit={handleLogin} className="space-y-4">
+                                    <div>
+                                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                            {t('username')}
+                                        </label>
+                                        <input
+                                            type="text"
+                                            value={loginUsername}
+                                            onChange={(e) => setLoginUsername(e.target.value)}
+                                            className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                                            required
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                            {t('password')}
+                                        </label>
+                                        <input
+                                            type="password"
+                                            value={loginPassword}
+                                            onChange={(e) => setLoginPassword(e.target.value)}
+                                            className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                                            required
+                                        />
+                                    </div>
+                                    {loginError && (
+                                        <p className="text-red-600 dark:text-red-400 text-sm">{loginError}</p>
+                                    )}
+                                    <button
+                                        type="submit"
+                                        className="w-full bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-200"
+                                    >
+                                        {t('loginButton')}
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    )}
                 </div>
             </div>
         </main>
