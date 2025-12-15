@@ -76,7 +76,7 @@ export default function About() {
                             <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
                                 {t('experience')}
                             </h2>
-                            <p className="text-gray-600 dark:text-gray-300">
+                            <p className="text-gray-600 dark:text-gray-300 text-justify">
                                 {t('experienceContent')}
                             </p>
                         </div>
@@ -85,7 +85,7 @@ export default function About() {
                             <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
                                 {t('skills')}
                             </h2>
-                            <p className="text-gray-600 dark:text-gray-300">
+                            <p className="text-gray-600 dark:text-gray-300 text-justify">
                                 {t('skillsContent')}
                             </p>
                         </div>
@@ -94,7 +94,7 @@ export default function About() {
                             <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
                                 {t('interests')}
                             </h2>
-                            <p className="text-gray-600 dark:text-gray-300">
+                            <p className="text-gray-600 dark:text-gray-300 text-justify">
                                 {t('interestsContent')}
                             </p>
                         </div>
