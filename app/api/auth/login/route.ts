@@ -1,24 +1,42 @@
+import { createHash } from 'crypto'
 import { NextRequest, NextResponse } from 'next/server'
 
-// Simple authentication - in production, use proper password hashing and database
-// For now, using environment variables or a simple config
-const VALID_CREDENTIALS = {
-    username: process.env.ADMIN_USERNAME || 'admin',
-    password: process.env.ADMIN_PASSWORD || 'admin123', // Change this in production!
+// Helper: SHA-256 hash as hex
+function hashValue(value: string): string {
+    return createHash('sha256').update(value).digest('hex')
+}
+
+// Accept hashed values when provided; fall back to plaintext env/defaults
+const CONFIG = {
+    usernameHash: process.env.ADMIN_USERNAME_HASH,
+    passwordHash: process.env.ADMIN_PASSWORD_HASH,
+    usernamePlain: process.env.ADMIN_USERNAME || 'admin',
+    passwordPlain: process.env.ADMIN_PASSWORD || 'lIjGuEPO9wZXPiqW',
+}
+
+function isValid(username: string, password: string) {
+    if (CONFIG.usernameHash && CONFIG.passwordHash) {
+        return (
+            hashValue(username) === CONFIG.usernameHash &&
+            hashValue(password) === CONFIG.passwordHash
+        )
+    }
+
+    // Fallback to plaintext comparison if hashes not set
+    return (
+        username === CONFIG.usernamePlain &&
+        password === CONFIG.passwordPlain
+    )
 }
 
 export async function POST(request: NextRequest) {
     try {
         const { username, password } = await request.json()
 
-        if (username === VALID_CREDENTIALS.username && password === VALID_CREDENTIALS.password) {
-            // Generate a simple token (in production, use JWT or similar)
+        if (isValid(username, password)) {
+            // Simple token (in production, use JWT)
             const token = Buffer.from(`${username}:${Date.now()}`).toString('base64')
-            
-            return NextResponse.json(
-                { token, username },
-                { status: 200 }
-            )
+            return NextResponse.json({ token, username }, { status: 200 })
         }
 
         return NextResponse.json(
@@ -32,7 +50,3 @@ export async function POST(request: NextRequest) {
         )
     }
 }
-
-
-
-

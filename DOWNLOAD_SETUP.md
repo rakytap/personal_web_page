@@ -10,12 +10,29 @@ The download page uses simple authentication. By default:
 
 ## Setting Custom Credentials
 
-To set custom credentials, create a `.env.local` file in the root directory:
+You can use either plaintext env vars (simpler) or hashed values (preferred).
 
+### Option A: Plaintext (quick setup)
+Create `.env.local` in the project root:
 ```env
 ADMIN_USERNAME=your_username
 ADMIN_PASSWORD=your_secure_password
 ```
+
+### Option B: Hashed (recommended)
+Store SHA-256 hashes instead of plaintext:
+```env
+ADMIN_USERNAME_HASH=<sha256_of_username>
+ADMIN_PASSWORD_HASH=<sha256_of_password>
+```
+How to generate SHA-256 (Linux/macOS):
+```bash
+echo -n "your_username" | sha256sum | cut -d" " -f1
+echo -n "your_secure_password" | sha256sum | cut -d" " -f1
+```
+If the hash variables are set, they take precedence over plaintext.
+
+**Note:** `.env.local` is git-ignored; don’t commit secrets.
 
 ## File Storage
 
@@ -37,7 +54,6 @@ ADMIN_PASSWORD=your_secure_password
 
 - This is a simple authentication system suitable for personal use
 - For production use, consider:
-  - Using proper password hashing (bcrypt)
   - Implementing JWT tokens with expiration
   - Using a proper database instead of JSON files
   - Adding rate limiting
