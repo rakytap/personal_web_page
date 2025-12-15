@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { AuthProvider } from './components/AuthProvider'
 import { LanguageProvider } from './components/LanguageProvider'
 import { Navigation } from './components/Navigation'
 import { ThemeProvider } from './components/ThemeProvider'
@@ -19,8 +20,10 @@ export default function RootLayout({
       <body className="bg-white dark:bg-gray-900 transition-colors">
         <ThemeProvider>
           <LanguageProvider>
-            <Navigation />
-            {children}
+            <AuthProvider>
+              <Navigation />
+              {children}
+            </AuthProvider>
           </LanguageProvider>
         </ThemeProvider>
       </body>
