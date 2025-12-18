@@ -22,6 +22,7 @@ docker build -t personal-web-page:latest .
 Mount uploads and metadata so they survive restarts:
 ```bash
 docker run --name web-page -d -p 3000:3000 \
+  -e PORT=3000 \
   --env-file .env.local \
   -v $(pwd)/uploads:/app/uploads \
   -v $(pwd)/files-metadata.json:/app/files-metadata.json \
