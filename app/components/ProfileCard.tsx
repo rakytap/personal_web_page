@@ -55,7 +55,7 @@ export function ProfileCard() {
     // Auto-rotate sections every 7 seconds
     useEffect(() => {
         const interval = setInterval(() => {
-            setCurrentSection((prev) => (prev + 1) % 3)
+            setCurrentSection((prev) => (prev + 1) % 9)
         }, 7000) // Change section every 7 seconds
 
         return () => clearInterval(interval)
