@@ -65,9 +65,15 @@ export async function GET(request: NextRequest) {
         const metadata = await getFilesMetadata()
         
         // Filter files based on authentication status
-        const visibleFiles = metadata.files.filter((file: any) => {
-            return isAuthenticated || file.isPublic
-        })
+        const visibleFiles = metadata.files
+            .filter((file: any) => {
+                return isAuthenticated || file.isPublic
+            })
+            .sort((a: any, b: any) => {
+                const ta = new Date(a.uploadedAt ?? 0).getTime()
+                const tb = new Date(b.uploadedAt ?? 0).getTime()
+                return tb - ta
+            })
 
         return NextResponse.json({ files: visibleFiles, isAuthenticated })
     } catch (error) {

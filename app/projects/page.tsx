@@ -8,33 +8,6 @@ export default function Projects() {
 
     const projects = [
         {
-            name: 'Sequential Quantum Gate Decomposer (SQUANDER)',
-            description: t('squanderDescription'),
-            url: 'https://github.com/rakytap/sequential-quantum-gate-decomposer',
-            features: [
-                t('squanderFeature1'),
-                t('squanderFeature2'),
-                t('squanderFeature3'),
-                t('squanderFeature4'),
-            ],
-            language: 'C++ / Python',
-            stars: '40+',
-            isGitHub: true,
-        },
-        {
-            name: 'Piquasso',
-            description: t('piquassoDescription'),
-            url: 'https://github.com/Budapest-Quantum-Computing-Group/piquasso',
-            features: [
-                t('piquassoFeature1'),
-                t('piquassoFeature2'),
-                t('piquassoFeature3'),
-            ],
-            language: 'Python / C++',
-            stars: '50+',
-            isGitHub: true,
-        },
-        {
             name: 'EQuUs: Eötvös Quantum Transport Utilities',
             description: t('equusDescription'),
             url: 'https://eqt.elte.hu/',
@@ -90,6 +63,48 @@ export default function Projects() {
             stars: 'Published',
             isGitHub: false,
         },
+        {
+            name: 'Piquasso',
+            description: t('piquassoDescription'),
+            url: 'https://github.com/Budapest-Quantum-Computing-Group/piquasso',
+            features: [
+                t('piquassoFeature1'),
+                t('piquassoFeature2'),
+                t('piquassoFeature3'),
+            ],
+            language: 'Python / C++',
+            stars: '50+',
+            isGitHub: true,
+        },
+        {
+            name: 'Sequential Quantum Gate Decomposer (SQUANDER)',
+            description: t('squanderDescription'),
+            url: 'https://github.com/rakytap/sequential-quantum-gate-decomposer',
+            features: [
+                t('squanderFeature1'),
+                t('squanderFeature2'),
+                t('squanderFeature3'),
+                t('squanderFeature4'),
+            ],
+            language: 'C++ / Python',
+            stars: '40+',
+            isGitHub: true,
+        },
+        {
+            name: t('detectorLpuVideoTitle'),
+            description: t('detectorLpuVideoDescription'),
+            url: 'https://www.youtube.com/watch?v=sJoIPZlf494',
+            features: [
+                t('detectorLpuVideoFeature1'),
+                t('detectorLpuVideoFeature2'),
+                t('detectorLpuVideoFeature3'),
+                t('detectorLpuVideoFeature4'),
+            ],
+            language: 'FPGA / LPU',
+            stars: 'SLAC & ELTE',
+            isGitHub: false,
+            isYouTube: true,
+        },
     ]
 
     return (
@@ -105,7 +120,7 @@ export default function Projects() {
                 </div>
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {projects.map((project, index) => {
+                    {[...projects].reverse().map((project, index) => {
                         // Different vibrant color schemes for each project
                         const colorSchemes = [
                             { bg: 'bg-gradient-to-br from-indigo-50 to-blue-50 dark:from-indigo-900/30 dark:to-blue-900/30', border: 'border-indigo-400', text: 'text-indigo-800 dark:text-indigo-200' },
@@ -119,7 +134,7 @@ export default function Projects() {
 
                         return (
                             <div
-                                key={index}
+                                key={project.url}
                                 className="bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-xl shadow-lg p-8 hover:shadow-2xl transition-all duration-300 border-2 border-gray-200 dark:border-gray-700 hover:border-indigo-400 dark:hover:border-indigo-500"
                             >
                                 <div className="flex items-start justify-between mb-4">
@@ -164,7 +179,13 @@ export default function Projects() {
                                         rel="noopener noreferrer"
                                         className="bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 text-white px-6 py-2 rounded-lg font-semibold transition-colors duration-200 inline-flex items-center gap-2"
                                     >
-                                        {project.isGitHub ? t('viewOnGitHub') : project.stars === 'Published' ? t('viewArticle') : t('viewWebsite')}
+                                        {project.isGitHub
+                                            ? t('viewOnGitHub')
+                                            : 'isYouTube' in project && project.isYouTube
+                                                ? t('viewOnYouTube')
+                                                : project.stars === 'Published'
+                                                    ? t('viewArticle')
+                                                    : t('viewWebsite')}
                                         <svg
                                             className="w-5 h-5"
                                             fill="none"
